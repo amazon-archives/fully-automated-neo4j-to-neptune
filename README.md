@@ -34,13 +34,14 @@ Amazon Neptune in a hands-free, fully-automated way
 Download the code using the following git command
 
 ```
-$ git clone https://github.com/sahays/fully-automated-neo4j-to-neptune.git
+$ git clone https://github.com/aws-samples/fully-automated-neo4j-to-neptune.git
 ```
 
 Run the app
 
 ```
 $ cd fully-automated-neo4j-to-neptune/bootstrapper
+$ npm install
 $ npm run deploy
 ```
 
