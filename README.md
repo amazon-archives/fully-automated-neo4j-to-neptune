@@ -72,7 +72,7 @@ Feel free to change the values before running the app
 {
   "app": "node bin/bootstrapper.js",
   "context": {
-    "bucket_identifier": "neo4j-neptune-blog",
+    "bucket_identifier": "<your-bucket-name>",
     "vpc_cidr": "192.168.0.0/16",
     "ec2_class": "t3",
     "ec2_type": "medium",
@@ -82,7 +82,7 @@ Feel free to change the values before running the app
     "ami_owner": "865118636886",
     "neptune_port": 8182,
     "neo4j_uid": "neo4j",
-    "neo4j_pwd": "pass@word1"
+    "neo4j_pwd": "<your-strong-password>"
   }
 }
 ```
