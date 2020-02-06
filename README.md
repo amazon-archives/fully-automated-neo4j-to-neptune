@@ -17,8 +17,8 @@ Amazon Neptune in a hands-free, fully-automated way
   [Configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
   [AWS CLI](https://aws.amazon.com/cli/)
 - The [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)
-  configured in the AWS profile must have the privileges to provision the
-  following resources. Please note, while working with AWS acounts, IAM users
+  configured in the AWS profile must have the privileges to provision and configure the
+  following resources. Please note, while working with AWS acounts, IAM users, 
   and policies always follow
   [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html):
   - Amazon VPC and Subnets
@@ -28,6 +28,10 @@ Amazon Neptune in a hands-free, fully-automated way
   - An Amazon Neptune cluster
 - Install
   [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
+- Verify the contents of ```bootstrapper/cdk.json``` to ensure you are choosing the right values for your environment
+  - [Create an Amazon EC2 key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+  - [Create a new Amazon S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+  - Use a strong password for Neo4j
 
 # Download, run, and dispose
 
