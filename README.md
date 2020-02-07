@@ -48,11 +48,12 @@ $ cd fully-automated-neo4j-to-neptune/bootstrapper
 $ npm install
 $ npm run deploy
 ```
+**Pro Tip: This app will ask questions. Be prepared to enter 'y' whenever asked to let it run. It's going to take about 10 minutes to setup everything so sit back, relax, and grab your beverage of choice.**
 
 After running the app, you'll see an output similar to the following:
 ![output](/bootstrapper/images/fully-automated-neptune-output.png)
 
-Please note: the code uses the `default` AWS CLI profile
+**Pro Tip: the code uses the `default` AWS CLI profile**
 
 To cleanup after you are done
 
@@ -60,8 +61,7 @@ To cleanup after you are done
 $ npm run destroy
 ```
 
-Please note: you'll have to manually delete the Amazon S3 bucket that's created
-by running this app
+**Pro Tip: you'll have to manually delete the Amazon S3 bucket that's created by running this app**
 
 # Configuration
 
