@@ -4,8 +4,8 @@
     "vpc_cidr": "192.168.0.0/16",
     "ec2_class": "t3a",
     "ec2_type": "xlarge",
-    "ec2_key_pair": "<your-key-pair>",
-    "sg_fromIp": "0.0.0.0/0",
+    "ec2_key_pair": "eu-west-2-key-pair-02082020",
+    "sg_fromIp": "76.121.151.156/32",
     "neptune_port": 8182,
     "neo4j_uid": "neo4j",
     "neo4j_pwd": "pass@word1"

@@ -11,21 +11,19 @@ const {
   CfnDBParameterGroup,
   CfnDBClusterParameterGroup
 } = require("@aws-cdk/aws-neptune");
-const { SecurityGroup, Peer, Port, Protocol } = require("@aws-cdk/aws-ec2");
-const { Output } = require("./shared/output");
 
 class NeptuneStack extends cdk.Stack {
-  NeptuneDBClusterIdentifier = "NeptuneDBCluster";
+  NeptuneDBClusterIdentifier = "neo4j-neptune-blog-cluster";
   NeptuneDBCluster;
-  NeptuneTrustedRoleName = "NeptuneTrustedS3Role";
+  NeptuneTrustedRoleName = "blog-role-neptune-s3";
   NeptuneTrustedRoleArn;
   NeptunePort;
 
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const {networkStack} = props;
-    const {CustomVpc, NeptuneSg} = networkStack;
+    const { networkStack } = props;
+    const { CustomVpc, NeptuneSg } = networkStack;
 
     this.NeptunePort = this.node.tryGetContext("neptune_port");
     this.NeptuneTrustedRoleArn =
@@ -39,18 +37,19 @@ class NeptuneStack extends cdk.Stack {
   }
 
   createNeptuneTrustedS3Role() {
-    return new Role(this, "NeptuneTrustedS3Role", {
+    const role = new Role(this, this.NeptuneTrustedRoleName, {
       assumedBy: new ServicePrincipal("rds.amazonaws.com"),
       roleName: this.NeptuneTrustedRoleName,
       managedPolicies: [
         ManagedPolicy.fromAwsManagedPolicyName("AmazonS3ReadOnlyAccess")
       ]
     });
+    return role;
   }
 
   createNeptuneCluster(customVpc, neptuneSg) {
     const subnetIds = [];
-    customVpc.publicSubnets.forEach(x => {
+    customVpc.publicSubnets.forEach((x) => {
       subnetIds.push(x.subnetId);
     });
     const neptuneDsg = new CfnDBSubnetGroup(this, "NeptuneDBSubnetGroup", {

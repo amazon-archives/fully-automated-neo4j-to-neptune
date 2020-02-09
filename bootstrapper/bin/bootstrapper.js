@@ -16,6 +16,7 @@ const defaultEnv = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
   region: process.env.CDK_DEFAULT_REGION
 };
+console.log(defaultEnv);
 const networkStack = new NetworkStack(app, "NetworkStack", {
   env: defaultEnv
 });
@@ -37,7 +38,8 @@ fs.writeFile(
   "neptuneStack-shared.json",
   JSON.stringify({
     DBClusterIdentifier: neptuneStack.NeptuneDBClusterIdentifier,
-    RoleArn: neptuneStack.NeptuneTrustedRoleArn
+    RoleArn: neptuneStack.NeptuneTrustedRoleArn,
+    region: process.env.CDK_DEFAULT_REGION
   }),
   (err, data) => {
     if (err) console.log("Error: ", err);

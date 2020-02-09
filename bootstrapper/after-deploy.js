@@ -4,15 +4,13 @@
 const AWS = require("aws-sdk");
 const fs = require("fs");
 
-const neptune = new AWS.Neptune({
-  apiVersion: "2014-10-31",
-  region: "us-west-2"
-});
-
 try {
   const sharedData = JSON.parse(fs.readFileSync("neptuneStack-shared.json"));
   console.log(sharedData);
-
+  const neptune = new AWS.Neptune({
+    apiVersion: "2014-10-31",
+    region: sharedData.region
+  });
   neptune.addRoleToDBCluster(
     {
       DBClusterIdentifier: sharedData.DBClusterIdentifier,

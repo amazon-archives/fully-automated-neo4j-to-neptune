@@ -7,5 +7,10 @@
     "us-west-2c",
     "us-west-2d"
   ],
-  "ami:account=865118636886:filters.image-type.0=machine:filters.name.0=Neo4j-Community-3.5.14-Gremlin-us-west-2:filters.state.0=available:owners.0=865118636886:region=us-west-2": "ami-04f0e44ec4685570b"
+  "ami:account=865118636886:filters.image-type.0=machine:filters.name.0=Neo4j-Community-3.5.14-Gremlin-us-west-2:filters.state.0=available:owners.0=865118636886:region=us-west-2": "ami-04f0e44ec4685570b",
+  "availability-zones:account=865118636886:region=eu-west-2": [
+    "eu-west-2a",
+    "eu-west-2b",
+    "eu-west-2c"
+  ]
 }

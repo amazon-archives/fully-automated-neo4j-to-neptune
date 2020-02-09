@@ -83,7 +83,7 @@ class NetworkStack extends cdk.Stack {
       })
     );
     instanceSg.addIngressRule(
-      Peer.anyIpv4(),
+      Peer.ipv4(this.node.tryGetContext("sg_fromIp")),
       new Port({
         protocol: Protocol.TCP,
         stringRepresentation: "ssh",

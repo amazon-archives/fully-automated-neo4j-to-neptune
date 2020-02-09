@@ -37,8 +37,8 @@ Amazon Neptune in a hands-free, fully-automated way
     [EC2 key pair](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EMRforDynamoDB.Tutorial.EC2KeyPair.html)
   - (optional) replace `pass@word1` with a strong password that you want to set
     for your Neo4j instance
-  - (optional) replace `0.0.0.0/0` with your current IP address.
-    [Know your IP address](https://www.whatsmyip.org/)
+  - (optional but recommended) replace `0.0.0.0/0` with your current IP address
+    e.g. 8.8.8.8/32 [Know your IP address](https://www.whatsmyip.org/)
 
 The contents of the file looks like this. Feel free to change the values before
 running the app
