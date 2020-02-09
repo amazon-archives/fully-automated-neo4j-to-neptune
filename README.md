@@ -33,11 +33,11 @@ Amazon Neptune in a hands-free, fully-automated way
 
 - Verify the app specific configuration saved in `bootstrapper/cdk.json` to
   ensure you have the right values for your environment
-  - replace `<your-key-pair>` with your own
+  - (required) replace `<your-key-pair>` with your own
     [EC2 key pair](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EMRforDynamoDB.Tutorial.EC2KeyPair.html)
-  - replace `<your-neo4j-password>` with a strong password that you want to set
+  - (optional) replace `pass@word1` with a strong password that you want to set
     for your Neo4j instance
-  - replace `0.0.0.0/0` with your current IP address.
+  - (optional) replace `0.0.0.0/0` with your current IP address.
     [Know your IP address](https://www.whatsmyip.org/)
 
 The contents of the file looks like this. Feel free to change the values before
@@ -49,15 +49,14 @@ running the app
   "context": {
     "vpc_cidr": "192.168.0.0/16",
     "ec2_class": "t3a",
-    "ec2_type": "medium",
+    "ec2_type": "xlarge",
     "ec2_key_pair": "<your-key-pair>",
     "sg_fromIp": "0.0.0.0/0",
     "neptune_port": 8182,
     "neo4j_uid": "neo4j",
-    "neo4j_pwd": "<your-neo4j-password>"
+    "neo4j_pwd": "pass@word1"
   }
 }
-
 ```
 
 # Download
