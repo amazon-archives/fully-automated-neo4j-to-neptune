@@ -5,7 +5,7 @@ Amazon Neptune in a hands-free, fully-automated way
 
 # Architecture
 
-![architecture](/bootstrapper/images/fully-automated-neptune-arch.png)
+![architecture](/bootstrapper/images/neo4j-neptune.png)
 
 # Prerequisites
 
