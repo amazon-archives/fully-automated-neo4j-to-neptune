@@ -83,7 +83,7 @@ respond with a 'y' to let it do its stuff. It will take about 10 minutes to
 deploy the infrastructure and run the required code to automate the migration.
 
 After running the app, you'll see an output similar to the following:
-![output](/bootstrapper/images/fully-automated-neptune-output.png)
+![output](/bootstrapper/images/neo4j-neptune-output.png)
 
 Please note: the code uses the `default` AWS CLI profile
 
