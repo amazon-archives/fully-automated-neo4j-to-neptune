@@ -8,7 +8,8 @@ const StartupScript = () => {
     s3Bucket,
     roleArn,
     neo4j_uid,
-    neo4j_pwd
+    neo4j_pwd,
+    neptunePort
   ) => {
     const setup = [
       "sudo su #",
@@ -48,7 +49,7 @@ const StartupScript = () => {
       'echo "hosts: [' +
         neptuneCluster.attrEndpoint +
         ']" >> neptune-remote.yaml',
-      'echo "port: 8182" >> neptune-remote.yaml',
+      'echo "port: ' + neptunePort + '" >> neptune-remote.yaml',
       'echo "connectionPool: { enableSsl: true, trustCertChainFile: "SFSRootCAG2.pem"}" >> neptune-remote.yaml',
       'echo "serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0, config: { serializeResultToString: true }}" >> neptune-remote.yaml'
     ];
@@ -80,7 +81,9 @@ const StartupScript = () => {
       "curl -X POST " +
       "-H 'Content-Type: application/json' https://" +
       neptuneCluster.attrEndpoint +
-      ":8182/loader -d '" +
+      ":" +
+      neptunePort +
+      "/loader -d '" +
       JSON.stringify({
         source: "s3://" + s3Bucket.bucketName + "/neo4j-data",
         format: "csv",

@@ -50,7 +50,8 @@ class Neo4jStack extends cdk.Stack {
       S3Bucket,
       NeptuneTrustedRoleArn,
       this.node.tryGetContext("neo4j_uid"),
-      this.node.tryGetContext("neo4j_pwd")
+      this.node.tryGetContext("neo4j_pwd"),
+      this.node.tryGetContext("neptune_port")
     );
 
     emit(this, neo4jEc2, neptuneStack, bucketStack, networkStack);

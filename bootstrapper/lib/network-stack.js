@@ -39,7 +39,6 @@ class NetworkStack extends cdk.Stack {
 
     this.InstanceSg = this.createInstanceSg(this.CustomVpc);
     this.NeptuneSg = this.createNeptuneSg(this.CustomVpc, this.InstanceSg);
-
   }
 
   createNeptuneSg(customVpc, instanceSg) {
@@ -51,9 +50,9 @@ class NetworkStack extends cdk.Stack {
       instanceSg,
       new Port({
         protocol: Protocol.TCP,
-        fromPort: 0,
-        toPort: 65535,
-        stringRepresentation: "all ports from ec2"
+        fromPort: this.node.tryGetContext("neptune_port"),
+        toPort: this.node.tryGetContext("neptune_port"),
+        stringRepresentation: "neptune_port from ec2"
       }),
       "from ec2"
     );
@@ -94,7 +93,6 @@ class NetworkStack extends cdk.Stack {
     );
     return instanceSg;
   }
-
 }
 
 module.exports = { NetworkStack };
