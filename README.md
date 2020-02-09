@@ -17,8 +17,8 @@ Amazon Neptune in a hands-free, fully-automated way
   [Configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
   [AWS CLI](https://aws.amazon.com/cli/)
 - The [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)
-  configured in the AWS profile must have the privileges to provision and configure the
-  following resources. Please note, while working with AWS acounts, IAM users, 
+  configured in the AWS profile must have the privileges to provision the
+  following resources. Please note, while working with AWS acounts, IAM users
   and policies always follow
   [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html):
   - Amazon VPC and Subnets
@@ -28,18 +28,47 @@ Amazon Neptune in a hands-free, fully-automated way
   - An Amazon Neptune cluster
 - Install
   [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
-- Verify the contents of ```bootstrapper/cdk.json``` to ensure you are choosing the right values for your environment
-  - [Create an Amazon EC2 key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
-  - [Create a new Amazon S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
-  - Use a strong password for Neo4j
 
-# Download, run, and dispose
+# Configuration
+
+- Verify the app specific configuration saved in `bootstrapper/cdk.json` to
+  ensure you have the right values for your environment
+  - replace `<your-key-pair>` with your own
+    [EC2 key pair](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EMRforDynamoDB.Tutorial.EC2KeyPair.html)
+  - replace `<your-neo4j-password>` with a strong password that you want to set
+    for your Neo4j instance
+  - replace `0.0.0.0/0` with your current IP address.
+    [Know your IP address](https://www.whatsmyip.org/)
+
+The contents of the file looks like this. Feel free to change the values before
+running the app
+
+```
+{
+  "app": "node bin/bootstrapper.js",
+  "context": {
+    "vpc_cidr": "192.168.0.0/16",
+    "ec2_class": "t3a",
+    "ec2_type": "medium",
+    "ec2_key_pair": "<your-key-pair>",
+    "sg_fromIp": "0.0.0.0/0",
+    "neptune_port": 8182,
+    "neo4j_uid": "neo4j",
+    "neo4j_pwd": "<your-neo4j-password>"
+  }
+}
+
+```
+
+# Download
 
 Download the code using the following git command
 
 ```
 $ git clone https://github.com/aws-samples/fully-automated-neo4j-to-neptune.git
 ```
+
+# Run
 
 Run the app
 
@@ -48,12 +77,17 @@ $ cd fully-automated-neo4j-to-neptune/bootstrapper
 $ npm install
 $ npm run deploy
 ```
-**Pro Tip: This app will ask questions. Be prepared to enter 'y' whenever asked to let it run. It's going to take about 10 minutes to setup everything so sit back, relax, and grab your beverage of choice.**
+
+The app will ask questions while showing you what it's trying to create. Just
+respond with a 'y' to let it do its stuff. It will take about 10 minutes to
+deploy the infrastructure and run the required code to automate the migration.
 
 After running the app, you'll see an output similar to the following:
 ![output](/bootstrapper/images/fully-automated-neptune-output.png)
 
-**Pro Tip: the code uses the `default` AWS CLI profile**
+Please note: the code uses the `default` AWS CLI profile
+
+# Destroy
 
 To cleanup after you are done
 
@@ -61,28 +95,5 @@ To cleanup after you are done
 $ npm run destroy
 ```
 
-**Pro Tip: you'll have to manually delete the Amazon S3 bucket that's created by running this app**
-
-# Configuration
-
-App specific configuration is saved in `cdk.json` file and it looks like this.
-Feel free to change the values before running the app
-
-```
-{
-  "app": "node bin/bootstrapper.js",
-  "context": {
-    "bucket_identifier": "<your-bucket-name>",
-    "vpc_cidr": "192.168.0.0/16",
-    "ec2_class": "t3",
-    "ec2_type": "medium",
-    "ec2_key_pair": "<your-key-pair>",
-    "sg_fromIp": "0.0.0.0/0",
-    "ami_name": "Neo4j-Community-3.5.14-Gremlin-us-west-2",
-    "ami_owner": "865118636886",
-    "neptune_port": 8182,
-    "neo4j_uid": "neo4j",
-    "neo4j_pwd": "<your-strong-password>"
-  }
-}
-```
+Please note: this command doesn't delete the Amazon S3 bucket it creates, you'll
+have to do it manually

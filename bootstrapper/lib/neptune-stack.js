@@ -24,6 +24,9 @@ class NeptuneStack extends cdk.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
+    const {networkStack} = props;
+    const {CustomVpc, NeptuneSg} = networkStack;
+
     this.NeptunePort = this.node.tryGetContext("neptune_port");
     this.NeptuneTrustedRoleArn =
       "arn:aws:iam::" +
@@ -31,31 +34,8 @@ class NeptuneStack extends cdk.Stack {
       ":role/" +
       this.NeptuneTrustedRoleName;
 
-    const { customVpc } = props;
-
-    this.NeptuneDBCluster = this.createNeptuneCluster(customVpc);
+    this.NeptuneDBCluster = this.createNeptuneCluster(CustomVpc, NeptuneSg);
     this.createNeptuneTrustedS3Role();
-    // this.emitOutput();
-  }
-
-  emitOutput() {
-    const output = new Output();
-    const data = output.load();
-    data.NeptuneDbClusterIdentifier = this.NeptuneDBClusterIdentifier;
-    data.GremlinEndpoint =
-      "http://" +
-      this.NeptuneDBCluster.attrEndpoint +
-      ":" +
-      this.NeptunePort +
-      "/gremlin";
-    data.LoaderEndpoint =
-      "http://" +
-      this.NeptuneDBCluster.attrEndpoint +
-      ":" +
-      this.NeptunePort +
-      "/loader";
-    data.NeptuneTrustedRole = this.NeptuneTrustedRoleName;
-    output.write(data);
   }
 
   createNeptuneTrustedS3Role() {
@@ -68,30 +48,7 @@ class NeptuneStack extends cdk.Stack {
     });
   }
 
-  createNeptuneCluster(customVpc) {
-    const neptuneSg = new SecurityGroup(this, "NeptuneSG", {
-      vpc: customVpc,
-      allowAllOutbound: true
-    });
-
-    neptuneSg.addIngressRule(
-      Peer.ipv4(this.node.tryGetContext("sg_fromIp")),
-      new Port({
-        protocol: Protocol.TCP,
-        stringRepresentation: "neptune console",
-        fromPort: this.NeptunePort,
-        toPort: this.NeptunePort
-      })
-    );
-    neptuneSg.addIngressRule(
-      Peer.ipv4(this.node.tryGetContext("sg_fromIp")),
-      new Port({
-        protocol: Protocol.TCP,
-        stringRepresentation: "neptune ssh",
-        fromPort: 22,
-        toPort: 22
-      })
-    );
+  createNeptuneCluster(customVpc, neptuneSg) {
     const subnetIds = [];
     customVpc.publicSubnets.forEach(x => {
       subnetIds.push(x.subnetId);

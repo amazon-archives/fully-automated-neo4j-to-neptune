@@ -8,7 +8,6 @@ const { Neo4jStack } = require("../lib/neo4j-stack");
 const { NeptuneStack } = require("../lib/neptune-stack");
 const { NetworkStack } = require("../lib/network-stack");
 const { BucketStack } = require("../lib/bucket-stack");
-const { MasterStack } = require("../lib/master-stack");
 
 const fs = require("fs");
 
@@ -25,20 +24,11 @@ const bucketStack = new BucketStack(app, "BucketStack", {
 });
 const neptuneStack = new NeptuneStack(app, "NeptuneStack", {
   env: defaultEnv,
-  customVpc: networkStack.CustomVpc
+  networkStack: networkStack
 });
-const neo4jStack = new Neo4jStack(app, "Neo4jStack", {
-  env: defaultEnv,
-  customVpc: networkStack.CustomVpc,
-  neptuneCluster: neptuneStack.NeptuneDBCluster,
-  s3Bucket: bucketStack.S3Bucket,
-  roleArn: neptuneStack.NeptuneTrustedRoleArn
-});
-
-new MasterStack(app, "MasterStack", {
+new Neo4jStack(app, "Neo4jStack", {
   env: defaultEnv,
   neptuneStack: neptuneStack,
-  neo4jStack: neo4jStack,
   bucketStack: bucketStack,
   networkStack: networkStack
 });

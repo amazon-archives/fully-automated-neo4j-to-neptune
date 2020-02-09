@@ -8,7 +8,8 @@
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
     "test": "jest",
-    "deploy": "cdk deploy MasterStack && node after-deploy.js",
+    "deploy": "cdk deploy Neo4jStack && node after-deploy.js",
+    "update": "cdk deploy Neo4jStack",
     "destroy": "cdk destroy *Stack"
   },
   "devDependencies": {

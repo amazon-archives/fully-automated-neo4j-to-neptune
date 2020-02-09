@@ -57,10 +57,6 @@ class MasterStack extends cdk.Stack {
       value: neo4jStack.Neo4jEc2.instanceId,
       description: "EC2 instance for Neo4j"
     });
-    new cdk.CfnOutput(this, "Neo4jBrowser", {
-      value: "http://" + neo4jStack.Neo4jEc2.instancePublicDnsName + ":7474",
-      description: "neo4jBrowser"
-    });
     new cdk.CfnOutput(this, "Neo4jCredentials", {
       value: JSON.stringify({
         username: this.node.tryGetContext("neo4j_uid"),
