@@ -17,17 +17,29 @@ const defaultEnv = {
   region: process.env.CDK_DEFAULT_REGION
 };
 console.log(defaultEnv);
-const networkStack = new NetworkStack(app, "NetworkStack", {
-  env: defaultEnv
-});
-const bucketStack = new BucketStack(app, "BucketStack", {
-  env: defaultEnv
-});
-const neptuneStack = new NeptuneStack(app, "NeptuneStack", {
-  env: defaultEnv,
-  networkStack: networkStack
-});
-new Neo4jStack(app, "Neo4jStack", {
+const networkStack = new NetworkStack(
+  app,
+  "migrating-neo4j-neptune-blog-network-stack",
+  {
+    env: defaultEnv
+  }
+);
+const bucketStack = new BucketStack(
+  app,
+  "migrating-neo4j-neptune-blog-s3-stack",
+  {
+    env: defaultEnv
+  }
+);
+const neptuneStack = new NeptuneStack(
+  app,
+  "migrating-neo4j-neptune-blog-neptune-stack",
+  {
+    env: defaultEnv,
+    networkStack: networkStack
+  }
+);
+new Neo4jStack(app, "migrating-neo4j-neptune-blog-ec2-stack", {
   env: defaultEnv,
   neptuneStack: neptuneStack,
   bucketStack: bucketStack,
