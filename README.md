@@ -81,6 +81,18 @@ The app will ask questions while showing you what it's trying to create. Just
 respond with a 'y' to let it do its stuff. It will take about 10 minutes to
 deploy the infrastructure and run the required code to automate the migration.
 
+When you run the app the following are downloaded and installed:
+
+- Neo4j community edition version 4.0.0 using `yum install neo4j-4.0.0 -y`
+- Apache TinkerPop Gremlin Console 3.4.5 from
+  `http://apache.mirrors.spacedump.net/tinkerpop/3.4.5/apache-tinkerpop-gremlin-console-3.4.5-bin.zip`
+- Neo4j movies graph cypher script
+  `https://raw.githubusercontent.com/sahays/fully-automated-neo4j-to-neptune/master/bootstrapper/movies-cypher.txt`
+- Neo4j APOC plugin version 4.0.0.2
+  `https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/4.0.0.2/apoc-4.0.0.2-all.jar`
+- Neo4j-to-Neptune tool
+  `https://github.com/awslabs/amazon-neptune-tools/tree/master/neo4j-to-neptune`
+
 After running the app, you'll see an output similar to the following:
 ![output](/bootstrapper/images/neo4j-neptune-output.png)
 
