@@ -57,7 +57,7 @@ const StartupScript = () => {
 
     const exportData = [
       "cd /",
-      "wget https://raw.githubusercontent.com/sahays/fully-automated-neo4j-to-neptune/master/bootstrapper/movies-cypher.txt",
+      "wget https://raw.githubusercontent.com/aws-samples/fully-automated-neo4j-to-neptune/master/bootstrapper/movies-cypher.txt",
       "wget https://d1rwcpsuqsa5hl.cloudfront.net/neo4j-to-neptune.jar",
       "cypher-shell -u " +
         neo4j_uid +
