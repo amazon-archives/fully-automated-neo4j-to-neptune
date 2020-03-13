@@ -4,6 +4,9 @@ Apache License, Version 2.0	http://www.apache.org/licenses/LICENSE-2.0
 ** aws-cdk; version 1.14.0 -- https://github.com/aws/aws-cdk
 AWS Cloud Development Kit (AWS CDK)
 Copyright 2018-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+** neo4j-apoc-procedures; version 4.0.0.2 --
+https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/4.0.0.2
+https://raw.githubusercontent.com/neo4j-contrib/neo4j-apoc-procedures/3.5/LICENSE
 
 Apache License
 
@@ -209,6 +212,8 @@ limitations under the License.
     AWS Cloud Development Kit (AWS CDK)
     Copyright 2018-2018 Amazon.com, Inc. or its affiliates. All Rights
     Reserved.
+* For neo4j-apoc-procedures see also this required NOTICE:
+    https://raw.githubusercontent.com/neo4j-contrib/neo4j-apoc-procedures/3.5/LICENSE
 
 ------
 
