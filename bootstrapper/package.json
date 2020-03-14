@@ -8,7 +8,7 @@
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
     "test": "jest",
-    "deploy": "cdk deploy *-stack && node after-deploy.js",
+    "deploy": "node before-deploy.js && cdk deploy *-stack && node after-deploy.js",
     "update": "cdk deploy *-stack",
     "destroy": "cdk destroy *-stack"
   },
