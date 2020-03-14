@@ -59,7 +59,7 @@ const questions = [
     name: "eula",
     initial: true,
     message:
-      'This app will download "Neo4j community edition version 4.0.0", "Apache TinkerPop Gremlin console version 3.4.5", "Neo4j APOC library version 4.0.0.2", and will use Neo4j provided built-in "movies" dataset from third-party sources. There are terms and conditions that you need to agree to abide by if you choose to let the app download, install, and configure as explained in "THIRD-PARTY-LICENSES.txt" file. If you do not agree with every term and condition associated with "Neo4j community edition version 4.0.0", "Apache TinkerPop Gremlin console version 3.4.5", "Neo4j APOC library version 4.0.0.2". Do you want to continue?'
+      'This app will download "Neo4j community edition version 4.0.0", "Apache TinkerPop Gremlin console version 3.4.5", "Neo4j APOC library version 4.0.0.2", and will use Neo4j provided built-in "movies" dataset from third-party sources. There are terms and conditions that you need to agree to abide by if you choose to let the app download, install, and configure as explained in "THIRD-PARTY-LICENSES.txt" file. If you do not agree with every term and condition associated with "Neo4j community edition version 4.0.0", "Apache TinkerPop Gremlin console version 3.4.5", "Neo4j APOC library version 4.0.0.2" you can exit now. Do you want to continue?'
   },
   {
     type: (prev) => (prev ? "confirm" : null),
