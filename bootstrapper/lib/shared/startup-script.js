@@ -136,7 +136,9 @@ const StartupScript = () => {
     // set environment variables to pass values e.g. neptune endpoint etc.
 
     // cd *bootstrap/docker-files/neo4j-400
-    // docker image build -t neo4j-400-export . && docker run -d --name neo4j-400 --mount type=bind,source="$(pwd)"/temp,target=/var/lib/neo4j/output neo4j-400-export:latest && docker exec -it -e NEO4J_PASSWORD neo4j-400 bash ./main.sh
+    // docker image build -t neo4j-400-export . && docker run -d -e NEO4J_PASSWORD --name neo4j-400 --mount type=bind,source="$(pwd)"/temp,target=/var/lib/neo4j/output neo4j-400-export:latest && docker exec -it -e NEO4J_PASSWORD neo4j-400 bash ./main.sh 
+    // docker run -d -e NEO4J_PASSWORD --name neo4j-400 --mount type=bind,source="$(pwd)"/temp,target=/var/lib/neo4j/output sanjeets/neo4j-400-export:latest && docker exec -it -e NEO4J_PASSWORD neo4j-400 sh -c ./main.sh
+    // docker image build -t neo4j-400-export . && docker run -d -e NEO4J_PASSWORD --name neo4j-400 --mount type=bind,source="$(pwd)"/temp,target=/var/lib/neo4j/output neo4j-400-export:latest && docker exec -it -e NEO4J_PASSWORD neo4j-400 sh -c ./main.sh
     // aws s3 cp /temp/ s3://bucket/neo4j-data --recursive
     const neo4jDocker = [""];
     neo4jEc2.addUserData(neo4jDocker.join("\n"));
