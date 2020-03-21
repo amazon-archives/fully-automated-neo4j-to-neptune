@@ -1,6 +1,17 @@
 // Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
+/*
+docker run -d --env NEO4J_AUTH=neo4j/pass@word1 \
+--name neo4j-400-export -p7474:7474 -p7687:7687 \
+-v $HOME/neo4j/logs:/logs  \
+neo4j-400-export
+*/
+
+// build docker image
+// run container
+// exec command
+
 const StartupScript = () => {
   const setStartupScript = (
     neo4jEc2,
@@ -95,7 +106,32 @@ const StartupScript = () => {
     neo4jEc2.addUserData(loadToNeptune);
   };
 
-  return { setStartupScript };
+  const setupDockerScript = () => {
+    const installDocker = [
+      "sudo su #",
+      "cd /",
+      "yum update -y",
+      "amazon-linux-extras install docker",
+      "service docker start",
+      "usermod -a -G docker ec2-user",
+      "docker info"
+    ];
+    neo4jEc2.addUserData(installDocker.join("\n"));
+
+    // docker image build -t neo4j-400-export . && docker run -d --name neo4j-400 neo4j-400-export:latest && docker exec -it neo4j-400 bash ./main.sh
+    // 
+    // 
+
+    // docker container stop neo4j-400 && docker container prune
+    // docker container start neo4j-400
+    // docker exec -it neo4j-400 cypher-shell :exit;
+    // docker container prune
+
+    const runNeo4jContainer=["docker run -d --name neo4j-400 --env NEO4J_AUTH=neo4j/pass@word1 -p7474:7474 -p7687:7687 sanjeets/neo4j-400-export","docker exec -t neo4j-400 "];
+    neo4jEc2.addUserData(runNeo4jContainer.join("\n"));
+  };
+
+  return { setStartupScript, setupDockerScript };
 };
 
 module.exports = { StartupScript };
