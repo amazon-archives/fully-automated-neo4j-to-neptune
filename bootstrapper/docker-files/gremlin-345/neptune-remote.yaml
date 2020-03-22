@@ -1,0 +1,9 @@
+hosts: ["REPLACE_HOST_ADDRESS"]
+port: 8182
+connectionPool:
+  { enableSsl: true, trustCertChainFile: "/gremlin-console/SFSRootCAG2.pem" }
+serializer:
+  {
+    className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0,
+    config: { serializeResultToString: true },
+  }

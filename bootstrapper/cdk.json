@@ -4,10 +4,10 @@
     "vpc_cidr": "192.168.0.0/16",
     "ec2_class": "t3a",
     "ec2_type": "xlarge",
-    "ec2_key_pair": "<your-key-pair-name>",
-    "sg_fromIp": "<provide-your-ip>",
+    "ec2_key_pair": "ssh-keypair-16Sep2019",
+    "sg_fromIp": "0.0.0.0/0",
     "neptune_port": 8182,
     "neo4j_uid": "neo4j",
-    "neo4j_pwd": "<choose-new-password>"
+    "neo4j_pwd": "hash@123"
   }
 }

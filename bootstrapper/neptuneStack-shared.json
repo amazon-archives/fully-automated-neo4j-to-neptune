@@ -1,1 +1,1 @@
-{"DBClusterIdentifier":"neo4j-neptune-blog-cluster","RoleArn":"arn:aws:iam::865118636886:role/blog-role-neptune-s3","region":"eu-west-2"}
+{"DBClusterIdentifier":"neo4j-neptune-blog-cluster","RoleArn":"arn:aws:iam::865118636886:role/blog-role-neptune-s3","region":"us-west-2"}

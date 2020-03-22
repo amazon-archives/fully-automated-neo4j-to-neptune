@@ -1,0 +1,1 @@
+CALL apoc.export.csv.all("NEO4J_EXPORT_FILE", {d:','});
