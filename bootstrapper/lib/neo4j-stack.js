@@ -48,19 +48,10 @@ class Neo4jStack extends cdk.Stack {
 			neo4jEc2,
 			neo4j_pwd: this.node.tryGetContext("neo4j_pwd"),
 			s3Bucket: S3Bucket.bucketName,
-			neptune_port: this.node.tryGetContext("neptune_port"),
-			neptune_host: NeptuneDBCluster.attrEndpoint
+			neptune_host: NeptuneDBCluster.attrEndpoint,
+			neptune_role: NeptuneTrustedRoleArn,
+			aws_region: process.env.CDK_DEFAULT_REGION
 		});
-
-		// setStartupScript(
-		//   neo4jEc2,
-		//   NeptuneDBCluster,
-		//   S3Bucket,
-		//   NeptuneTrustedRoleArn,
-		//   this.node.tryGetContext("neo4j_uid"),
-		//   this.node.tryGetContext("neo4j_pwd"),
-		//   this.node.tryGetContext("neptune_port")
-		// );
 
 		emit(this, neo4jEc2, neptuneStack, bucketStack, networkStack);
 	}
