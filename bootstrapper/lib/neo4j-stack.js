@@ -46,7 +46,7 @@ class Neo4jStack extends cdk.Stack {
 
 		setupDockerScript({
 			neo4jEc2,
-			neo4j_pwd: "pass@word1",
+			neo4j_pwd: process.env.neo4j_pwd,
 			s3Bucket: S3Bucket.bucketName,
 			neptune_host: NeptuneDBCluster.attrEndpoint,
 			neptune_role: NeptuneTrustedRoleArn,

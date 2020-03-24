@@ -36,8 +36,6 @@ Amazon Neptune in a hands-free, fully-automated way
   - (Required) replace `<your-key-pair-name>` with your own
     [EC2 key pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)
     name e.g. `my-us-west-2-key-pair`
-  - (Required) replace `<choose-new-password>` with a strong password of your
-    choice
   - (Required) replace `<provide-your-ip>` with your current IP address e.g.
     8.8.8.8/32 [Know your IP address](https://www.whatsmyip.org/)
 
@@ -46,15 +44,14 @@ running the app
 
 ```
 {
-  "app": "node bin/bootstrapper.js",
-  "context": {
-    "vpc_cidr": "192.168.0.0/16",
-    "ec2_class": "t3a",
-    "ec2_type": "xlarge",
-    "ec2_key_pair": "<your-key-pair-name>",
-    "sg_fromIp": "<provide-your-ip>",
-    "neptune_port": 8182
-  }
+	"app": "node bin/bootstrapper.js",
+	"context": {
+		"vpc_cidr": "192.168.0.0/16",
+		"ec2_class": "t3a",
+		"ec2_type": "xlarge",
+		"ec2_key_pair": "<your-key-pair-name>",
+		"sg_fromIp": "<provide-your-ip>"
+	}
 }
 ```
 
@@ -76,6 +73,9 @@ $ npm install
 $ npm run deploy
 ```
 
+Detailed architecture
+![architecture](/bootstrapper/images/migrating-blog-sys-arch.png)
+
 The app will ask questions while showing you what it's trying to create. Just
 respond with a 'y' to let it do its stuff. It will take about 10 minutes to
 deploy the infrastructure and run the required code to automate the migration.
@@ -93,7 +93,7 @@ When you run the app the following are downloaded and installed:
   `https://github.com/awslabs/amazon-neptune-tools/tree/master/neo4j-to-neptune`
 
 After running the app, you'll see an output similar to the following:
-![output](/bootstrapper/images/neo4j-neptune-output.png)
+![output](/bootstrapper/images/migrating-stack-output.png)
 
 Please note: the code uses the `default` AWS CLI profile
 

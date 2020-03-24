@@ -13,36 +13,39 @@ const fs = require("fs");
 
 const app = new cdk.App();
 const defaultEnv = {
-  account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION
+	account: process.env.CDK_DEFAULT_ACCOUNT,
+	region: process.env.CDK_DEFAULT_REGION
 };
-console.log(defaultEnv);
+// console.log(defaultEnv);
+process.env.neo4j_pwd = "pass@word1";
+process.env.neo4j_uid = "neo4j";
+process.env.neptune_port = 8182;
 const networkStack = new NetworkStack(app, "migrating-blog-network-stack", {
-  env: defaultEnv
+	env: defaultEnv
 });
 const bucketStack = new BucketStack(app, "migrating-blog-s3-stack", {
-  env: defaultEnv
+	env: defaultEnv
 });
 const neptuneStack = new NeptuneStack(app, "migrating-blog-neptune-stack", {
-  env: defaultEnv,
-  networkStack: networkStack
+	env: defaultEnv,
+	networkStack: networkStack
 });
 new Neo4jStack(app, "migrating-blog-ec2-stack", {
-  env: defaultEnv,
-  neptuneStack: neptuneStack,
-  bucketStack: bucketStack,
-  networkStack: networkStack
+	env: defaultEnv,
+	neptuneStack: neptuneStack,
+	bucketStack: bucketStack,
+	networkStack: networkStack
 });
 
 fs.writeFile(
-  "neptuneStack-shared.json",
-  JSON.stringify({
-    DBClusterIdentifier: neptuneStack.NeptuneDBClusterIdentifier,
-    RoleArn: neptuneStack.NeptuneTrustedRoleArn,
-    region: process.env.CDK_DEFAULT_REGION
-  }),
-  (err, data) => {
-    if (err) console.log("Error: ", err);
-    // console.log(data);
-  }
+	"neptuneStack-shared.json",
+	JSON.stringify({
+		DBClusterIdentifier: neptuneStack.NeptuneDBClusterIdentifier,
+		RoleArn: neptuneStack.NeptuneTrustedRoleArn,
+		region: process.env.CDK_DEFAULT_REGION
+	}),
+	(err, data) => {
+		if (err) console.log("Error: ", err);
+		// console.log(data);
+	}
 );
