@@ -92,8 +92,8 @@ When you run the app the following are downloaded and installed:
 - Neo4j-to-Neptune tool
   `https://github.com/awslabs/amazon-neptune-tools/tree/master/neo4j-to-neptune`
 - Customized Docker repositories
-  - Neo4j docker: `https://hub.docker.com/repository/docker/sanjeets/neo4j-400-export`
-  - Gremlin console docker: `https://hub.docker.com/repository/docker/sanjeets/neptune-gremlinc-345`
+  - Neo4j docker: https://hub.docker.com/repository/docker/sanjeets/neo4j-400-export
+  - Gremlin console docker: https://hub.docker.com/repository/docker/sanjeets/neptune-gremlinc-345
 
 After running the app, you'll see an output similar to the following:
 ![output](/bootstrapper/images/migrating-stack-output.png)
