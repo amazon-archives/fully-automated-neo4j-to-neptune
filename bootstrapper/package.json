@@ -1,27 +1,28 @@
 {
-  "name": "bootstrapper",
-  "version": "0.1.0",
-  "bin": {
-    "bootstrapper": "bin/bootstrapper.js"
-  },
-  "scripts": {
-    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
-    "cdk": "cdk",
-    "test": "jest",
-    "deploy": "node before-deploy.js && cdk deploy *-stack && node after-deploy.js",
-    "update": "cdk deploy *-stack",
-    "destroy": "cdk destroy *-stack"
-  },
-  "devDependencies": {
-    "@aws-cdk/assert": "^1.20.0",
-    "aws-cdk": "^1.20.0",
-    "jest": "^24.9.0"
-  },
-  "dependencies": {
-    "@aws-cdk/aws-ec2": "^1.20.0",
-    "@aws-cdk/aws-iam": "^1.20.0",
-    "@aws-cdk/aws-neptune": "^1.20.0",
-    "@aws-cdk/aws-s3": "^1.20.0",
-    "@aws-cdk/core": "^1.20.0"
-  }
+	"name": "bootstrapper",
+	"version": "0.1.0",
+	"bin": {
+		"bootstrapper": "bin/bootstrapper.js"
+	},
+	"scripts": {
+		"build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
+		"cdk": "cdk",
+		"test": "jest",
+		"deploy": "node before-deploy.js && cdk deploy *-stack && node after-deploy.js",
+		"reset": "cdk destroy migrating-blog-ec2-stack && npm run deploy",
+		"update": "cdk deploy *-stack",
+		"destroy": "cdk destroy *-stack"
+	},
+	"devDependencies": {
+		"@aws-cdk/assert": "^1.20.0",
+		"aws-cdk": "^1.20.0",
+		"jest": "^24.9.0"
+	},
+	"dependencies": {
+		"@aws-cdk/aws-ec2": "^1.20.0",
+		"@aws-cdk/aws-iam": "^1.20.0",
+		"@aws-cdk/aws-neptune": "^1.20.0",
+		"@aws-cdk/aws-s3": "^1.20.0",
+		"@aws-cdk/core": "^1.20.0"
+	}
 }

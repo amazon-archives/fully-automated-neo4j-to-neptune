@@ -19,7 +19,7 @@ const {
 const { StartupScript } = require("./shared/startup-script");
 const { EmitOutput } = require("./shared/emit-output");
 
-const { setStartupScript, setupDockerScript } = StartupScript();
+const { setupDockerScript } = StartupScript();
 const { emit } = EmitOutput();
 
 class Neo4jStack extends cdk.Stack {
@@ -46,7 +46,7 @@ class Neo4jStack extends cdk.Stack {
 
 		setupDockerScript({
 			neo4jEc2,
-			neo4j_pwd: this.node.tryGetContext("neo4j_pwd"),
+			neo4j_pwd: "pass@word1",
 			s3Bucket: S3Bucket.bucketName,
 			neptune_host: NeptuneDBCluster.attrEndpoint,
 			neptune_role: NeptuneTrustedRoleArn,

@@ -53,9 +53,7 @@ running the app
     "ec2_type": "xlarge",
     "ec2_key_pair": "<your-key-pair-name>",
     "sg_fromIp": "<provide-your-ip>",
-    "neptune_port": 8182,
-    "neo4j_uid": "neo4j",
-    "neo4j_pwd": "<choose-new-password>"
+    "neptune_port": 8182
   }
 }
 ```
