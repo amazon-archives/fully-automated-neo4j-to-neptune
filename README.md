@@ -1,6 +1,8 @@
 # Overview
 
-This AWS CDK app helps you migrate the simple Neo4j movies graph database to Amazon Neptune in a hands-free, fully automated way.
+This AWS CDK app helps you migrate the simple Neo4j movies graph database to
+Amazon Neptune in a hands-free, fully automated way for more details read this
+[AWS Database blog](https://aws.amazon.com/blogs/database/migrating-a-neo4j-graph-database-to-amazon-neptune-with-a-fully-automated-utility/)
 
 # Architecture
 
@@ -90,8 +92,10 @@ When you run the app the following are downloaded and installed:
 - Neo4j-to-Neptune tool
   `https://github.com/awslabs/amazon-neptune-tools/tree/master/neo4j-to-neptune`
 - Customized Docker repositories
-  - Neo4j docker: https://hub.docker.com/repository/docker/sanjeets/neo4j-400-export
-  - Gremlin console docker: https://hub.docker.com/repository/docker/sanjeets/neptune-gremlinc-345
+  - Neo4j docker:
+    https://hub.docker.com/repository/docker/sanjeets/neo4j-400-export
+  - Gremlin console docker:
+    https://hub.docker.com/repository/docker/sanjeets/neptune-gremlinc-345
 
 After running the app, you'll see an output similar to the following:
 ![output](/bootstrapper/images/migrating-stack-output.png)
