@@ -1,8 +1,9 @@
 # Overview
 
 This AWS CDK app helps you migrate the simple Neo4j movies graph database to
-Amazon Neptune in a hands-free, fully automated way for more details read this
-[AWS Database blog](https://aws.amazon.com/blogs/database/migrating-a-neo4j-graph-database-to-amazon-neptune-with-a-fully-automated-utility/)
+Amazon Neptune in a hands-free, fully automated way. The AWS database blog
+[Migrating a Neo4j graph database to Amazon Neptune with a fully automated utility](https://aws.amazon.com/blogs/database/migrating-a-neo4j-graph-database-to-amazon-neptune-with-a-fully-automated-utility/)
+has more details
 
 # Architecture
 
